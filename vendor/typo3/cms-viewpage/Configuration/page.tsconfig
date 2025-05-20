@@ -1,0 +1,38 @@
+mod.web_view.previewFrameWidths {
+    phone {
+        label = LLL:EXT:viewpage/Resources/Private/Language/locallang.xlf:mobile
+        type = mobile
+        width = 390
+        height = 844
+    }
+    tabletPortrait {
+        label = LLL:EXT:viewpage/Resources/Private/Language/locallang.xlf:tabletPortrait
+        type = tablet
+        width = 768
+        height = 1024
+    }
+    tabletLandscape {
+        label = LLL:EXT:viewpage/Resources/Private/Language/locallang.xlf:tabletLandscape
+        type = tablet
+        width = 1024
+        height = 768
+    }
+    1280 {
+        label = LLL:EXT:viewpage/Resources/Private/Language/locallang.xlf:desktop
+        type = desktop
+        width = 1280
+        height = 1024
+    }
+    1440 {
+        label = LLL:EXT:viewpage/Resources/Private/Language/locallang.xlf:desktop
+        type = desktop
+        width = 1440
+        height = 1024
+    }
+    1920 {
+        label = LLL:EXT:viewpage/Resources/Private/Language/locallang.xlf:desktop
+        type = desktop
+        width = 1920
+        height = 1080
+    }
+}

@@ -1,0 +1,13 @@
+/*
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
+import{MessageUtility as u}from"@typo3/backend/utility/message-utility.js";import d from"@typo3/backend/element-browser.js";import c from"nprogress";import l from"@typo3/core/event/regular-event.js";import m from"@typo3/backend/icons.js";import{FileListActionSelector as g,FileListActionUtility as h,FileListActionEvent as r}from"@typo3/filelist/file-list-actions.js";import w from"@typo3/backend/info-window.js";import y from"@typo3/core/ajax/ajax-request.js";class s{constructor(){this.importSelection=e=>{e.preventDefault();const t=e.target,n=e.detail.checkboxes;if(!n.length)return;const i=[];if(n.forEach(o=>{if(o.checked){const p=o.closest(g.elementSelector),a=h.getResourceForElement(p);a.type==="file"&&a.uid&&i.unshift(a)}}),!i.length)return;m.getIcon("spinner-circle",m.sizes.small,null,null,m.markupIdentifiers.inline).then(o=>{t.classList.add("disabled"),t.innerHTML=o}),c.configure({parent:".element-browser-main-content",showSpinner:!1}),c.start();const f=1/i.length;s.handleNext(i),new l("message",o=>{if(!u.verifyOrigin(o.origin))throw"Denied message sent by "+o.origin;o.data.actionName==="typo3:foreignRelation:inserted"&&(i.length>0?(c.inc(f),s.handleNext(i)):(c.done(),d.focusOpenerAndClose()))}).bindTo(window)},new l(r.primary,e=>{e.preventDefault();const t=e.detail;t.originalAction=r.primary,t.action=r.select,document.dispatchEvent(new CustomEvent(r.select,{detail:t}))}).bindTo(document),new l(r.select,e=>{e.preventDefault();const t=e.detail,n=t.resources[0];n.type==="file"&&s.insertElement(n.name,n.uid,t.originalAction===r.primary),n.type==="folder"&&this.loadContent(n)}).bindTo(document),new l(r.show,e=>{e.preventDefault();const n=e.detail.resources[0];w.showItem("_"+n.type.toUpperCase(),n.identifier)}).bindTo(document),new l("multiRecordSelection:action:import",this.importSelection).bindTo(document)}static insertElement(e,t,n){return d.insertElement("sys_file",String(t),e,String(t),n)}static handleNext(e){if(e.length>0){const t=e.pop();s.insertElement(t.name,Number(t.uid))}}loadContent(e){if(e.type!=="folder")return;const t=document.location.href+"&contentOnly=1&expandFolder="+e.identifier;new y(t).get().then(n=>n.resolve()).then(n=>{const i=document.querySelector(".element-browser-main-content .element-browser-body");i.innerHTML=n})}}var b=new s;export{b as default};
