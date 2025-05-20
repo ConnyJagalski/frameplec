@@ -1,0 +1,60 @@
+{
+  "name": "b13/make",
+  "description": "Kickstarter CLI tool for various TYPO3 functionalities",
+  "type": "typo3-cms-extension",
+  "homepage": "https://b13.com",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "TYPO3",
+    "Kickstarter",
+    "Extensions",
+    "CLI"
+  ],
+  "authors": [
+    {
+      "name": "Oliver Bartsch",
+      "email": "oliver.bartsch@b13.com"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": "^10.0 || ^11.0 || ^12.0 || ^13.0"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1.4",
+    "typo3/cms-core": "^11.5",
+    "typo3/coding-standards": "^0.5",
+    "typo3/tailor": "^1.4",
+    "typo3/testing-framework": "^7.0"
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin",
+    "sort-packages": true,
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "make",
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/Web"
+    }
+  },
+  "scripts": {
+    "prepare-tests-10": [
+      "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "B13\\Make\\": "Classes/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "B13\\Make\\Tests\\": "Tests/"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "jagalski/frameplec",
+    "description": "can't touch this, da da da da bum bum bum bum",
+    "type": "typo3-cms-extension",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require": {
+        "typo3/cms-core": "^13.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jagalski\\Frameplec\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "frameplec"
+        }
+    }
+}

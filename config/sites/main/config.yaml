@@ -1,0 +1,15 @@
+base: 'https://frameplec.ddev.site'
+dependencies:
+  - typo3/fluid-styled-content
+  - typo3/fluid-styled-content-css
+languages:
+  -
+    title: English
+    enabled: true
+    languageId: 0
+    base: /
+    locale: en_US.UTF-8
+    navigationTitle: English
+    flag: us
+rootPageId: 1
+websiteTitle: ''

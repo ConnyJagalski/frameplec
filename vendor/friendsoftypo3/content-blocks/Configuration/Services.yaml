@@ -1,0 +1,33 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  TYPO3\CMS\ContentBlocks\:
+    resource: '../Classes/*'
+
+  TYPO3\CMS\ContentBlocks\Basics\BasicsRegistry:
+    factory:
+      - '@TYPO3\CMS\ContentBlocks\Basics\BasicsLoader'
+      - 'load'
+
+  TYPO3\CMS\ContentBlocks\Registry\ContentBlockRegistry:
+    factory:
+      - '@TYPO3\CMS\ContentBlocks\Loader\ContentBlockLoader'
+      - 'load'
+
+  TYPO3\CMS\ContentBlocks\Definition\TableDefinitionCollection:
+    factory:
+      - '@TYPO3\CMS\ContentBlocks\Definition\Factory\TableDefinitionCollectionFactory'
+      - 'create'
+
+  TYPO3\CMS\ContentBlocks\Registry\AutomaticLanguageKeysRegistry:
+    factory:
+      - '@TYPO3\CMS\ContentBlocks\Definition\TableDefinitionCollection'
+      - 'getAutomaticLanguageKeysRegistry'
+
+  TYPO3\CMS\ContentBlocks\Registry\LanguageFileRegistry:
+    factory:
+      - '@TYPO3\CMS\ContentBlocks\Registry\LanguageFileRegistryFactory'
+      - 'create'

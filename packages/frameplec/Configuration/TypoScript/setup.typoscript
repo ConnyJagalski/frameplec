@@ -1,0 +1,59 @@
+lib.dynamicContent = COA
+lib.dynamicContent {
+   10 = LOAD_REGISTER
+   10.colPos.cObject = TEXT
+   10.colPos.cObject {
+      field = colPos
+      ifEmpty.cObject = TEXT
+      ifEmpty.cObject {
+         value.current = 1
+         ifEmpty = 0
+      }
+   }
+   20 = CONTENT
+   20 {
+      table = tt_content
+      select {
+         orderBy = sorting
+         where = {#colPos}={register:colPos}
+         where.insertData = 1
+      }
+   }
+   90 = RESTORE_REGISTER
+}
+
+page = PAGE
+page {
+  10 = FLUIDTEMPLATE
+  10 {
+    templateName = Default
+    templateRootPaths {
+      0 = EXT:frameplec/Resources/Private/Templates/Content/
+    }
+    partialRootPaths {
+      0 = EXT:frameplec/Resources/Private/Partials/
+    }
+    layoutRootPaths {
+      0 = EXT:frameplec/Resources/Private/Layouts/Content/
+    }
+    variables {
+      content < styles.content.get
+    }
+  }
+
+  includeCSS {
+    frameplec = EXT:frameplec/Resources/Public/Css/main.css
+  }
+
+  meta {
+    viewport = TEXT
+    viewport.data = GP:TSFE_PAGE|tx_seo_pagetitle
+    viewport.override.field = viewport
+    viewport.stdWrap.ifEmpty = width=device-width, initial-scale=1.0, viewport-fit=cover
+  }
+}
+
+tt_content {
+  text.20.renderObj = < tt_content.text.20.renderObj
+  textmedia.20.renderObj = < tt_content.textmedia.20.renderObj
+}
